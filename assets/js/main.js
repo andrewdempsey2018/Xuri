@@ -43,7 +43,7 @@ const enemy = add([
 
 let colls = new Set();
 
-for (let i = 0; i < 200; i++) {
+for (let i = 0; i < 20; i++) {
     colls.add(new pickup(rand(0, 700), rand(0, 500), rand(10, 530)));
 }
 
