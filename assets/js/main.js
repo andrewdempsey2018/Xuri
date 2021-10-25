@@ -41,8 +41,11 @@ const enemy = add([
     pos(700, 550),
 ]);
 
-const x = new pickup(140, 140, 10);
-const y = new pickup(233, 233, 30);
+let colls = new Set();
+
+for (let i = 0; i < 200; i++) {
+    colls.add(new pickup(rand(0, 700), rand(0, 500), rand(10, 530)));
+}
 
 action(() => {
     enemy.move(enemySpeedX, -ENEMY_SPEED);
@@ -59,9 +62,11 @@ action(() => {
         enemySpeedX = enemySpeedX * -1;
     }
 
-    x.move();
-    y.move();
-
+    colls.forEach(coll => {
+        coll.move();
+        
+    });
+    
 });
 
 
