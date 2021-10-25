@@ -1,5 +1,6 @@
 import k from "./kaboom.js"
 import pickup from "./pickup.js"
+import bullet from "./bullet.js"
 
 loadSprite("ship", "./assets/sprites/ship.png");
 loadSprite("enemy", "./assets/sprites/enemy.png");
@@ -29,6 +30,14 @@ keyDown("left", () => {
 
 keyDown("right", () => {
     ship.move(SHIP_SPEED, 0);
+});
+
+//shoot
+
+let bullets = new Set();
+
+keyPress("z", () => {
+    bullets.add(new bullet(ship.screenPos().x, ship.screenPos().y, 900));
 });
 
 //enemys
@@ -64,9 +73,12 @@ action(() => {
 
     colls.forEach(coll => {
         coll.move();
-        
     });
-    
+
+    bullets.forEach(bullet => {
+        bullet.move();
+    });
+
 });
 
 
