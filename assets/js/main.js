@@ -1,4 +1,5 @@
 import k from "./kaboom.js"
+import pickup from "./pickup.js"
 
 loadSprite("ship", "./assets/sprites/ship.png");
 loadSprite("enemy", "./assets/sprites/enemy.png");
@@ -40,6 +41,9 @@ const enemy = add([
     pos(700, 550),
 ]);
 
+const x = new pickup(140, 140, 10);
+const y = new pickup(233, 233, 30);
+
 action(() => {
     enemy.move(enemySpeedX, -ENEMY_SPEED);
     enemySpeedX += 10;
@@ -55,5 +59,10 @@ action(() => {
         enemySpeedX = enemySpeedX * -1;
     }
 
+    x.move();
+    y.move();
+
 });
+
+
 
