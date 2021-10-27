@@ -11,9 +11,11 @@ const ship = add([
     sprite("ship"),
     area(),
     pos(400, 300),
+    "ship"
 ]);
 
-
+loadSound("shoot", "./assets/sfx/shoot.wav");
+loadSound("explosion", "./assets/sfx/explosion.wav");
 
 // controls
 keyDown("up", () => {
@@ -38,23 +40,32 @@ let bullets = new Set();
 
 keyPress("z", () => {
     bullets.add(new bullet(ship.screenPos().x, ship.screenPos().y, 900));
+    console.log("boom");
+    play("shoot");
 });
 
 //enemys
-const ENEMY_SPEED = 250;
+const ENEMY_SPEED = 50;
 let enemySpeedX = 10;
 
 const enemy = add([
     sprite("enemy"),
     area(),
     pos(700, 550),
+    "enemy"
 ]);
 
 let colls = new Set();
 
 for (let i = 0; i < 20; i++) {
     colls.add(new pickup(rand(0, 700), rand(0, 500), rand(10, 530)));
-}
+};
+
+collides("bullet", "enemy", (enemy) => {
+    play("explosion");
+    enemy.moveTo(rand(40, 700), 60);
+});
+
 
 action(() => {
     enemy.move(enemySpeedX, -ENEMY_SPEED);
@@ -78,6 +89,8 @@ action(() => {
     bullets.forEach(bullet => {
         bullet.move();
     });
+
+
 
 });
 

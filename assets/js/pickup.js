@@ -10,9 +10,10 @@ class pickup {
         this.speed = speed;
 
         this.spr = k.add([
-            sprite("pickup"),
-            area(),
-            pos(this.xPos, this.yPos)
+            k.sprite("pickup"),
+            k.area(),
+            k.pos(this.xPos, this.yPos),
+            "pickup"
         ]);
     }
 

@@ -9,10 +9,11 @@ class bullet {
         this.yPos = yPos;
         this.speed = speed;
 
-        this.spr = k.add([
+        this.spr = add([
             sprite("bullet"),
             area(),
-            pos(this.xPos, this.yPos)
+            pos(this.xPos, this.yPos),
+            "bullet"
         ]);
     }
 
