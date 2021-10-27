@@ -57,13 +57,19 @@ const enemy = add([
 
 let colls = new Set();
 
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 4; i++) {
     colls.add(new pickup(rand(0, 700), rand(0, 500), rand(10, 530)));
 };
 
 collides("bullet", "enemy", (enemy) => {
     play("explosion");
     enemy.moveTo(rand(40, 700), 60);
+});
+
+collides("bullet", "pickup", (bullet, pickup) => {
+    play("explosion");
+    bullet.moveTo(1500, 1500);
+    pickup.moveTo(2500, 1500);
 });
 
 
